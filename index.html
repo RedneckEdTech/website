@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redneck EdTech | Free, Common-Sense Tech for Real Classrooms</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter & Bold Display -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Russo+One&family=Teko:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            cyan: '#0284c7',
+                            cyanGlow: '#00c3ff',
+                            wood: '#854d0e',
+                            amber: '#d97706',
+                            red: '#dc2626',
+                            denim: '#1d4ed8',
+                            surface: '#ffffff',
+                            surfaceMuted: '#f8fafc',
+                            cardBorder: '#e2e8f0'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['"Russo One"', 'sans-serif'],
+                        badge: ['Teko', 'sans-serif']
+                    },
+                    boxShadow: {
+                        'neon-card': '0 10px 30px -10px rgba(2, 132, 199, 0.15)',
+                        'rustic-subtle': '0 10px 25px -5px rgba(133, 77, 14, 0.12)',
+                        'hover-glow': '0 14px 28px rgba(0, 0, 0, 0.08), 0 0 20px rgba(2, 132, 199, 0.18)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Light grid pattern background reminiscent of blueprinted circuit boards */
+        .bg-light-blueprint {
+            background-color: #ffffff;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(2, 132, 199, 0.07) 0%, transparent 60%),
+                radial-gradient(circle at 90% 90%, rgba(220, 38, 38, 0.04) 0%, transparent 50%),
+                linear-gradient(to right, rgba(2, 132, 199, 0.04) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(2, 132, 199, 0.04) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 36px 36px, 36px 36px;
+        }
+
+        /* Subtle pulse for badge highlight */
+        @keyframes gentlePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+        .animate-gentle-pulse {
+            animation: gentlePulse 3s ease-in-out infinite;
+        }
+
+        /* Custom scrollbar for clean white theme */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0284c7;
+        }
+    </style>
+</head>
+<body class="bg-light-blueprint text-slate-800 font-sans antialiased min-h-screen flex flex-col selection:bg-brand-cyan selection:text-white">
+
+    <!-- Top Announcement Bar: Zero Cost Guarantee -->
+    <div class="bg-gradient-to-r from-red-600 via-amber-600 to-brand-denim text-white text-xs sm:text-sm font-semibold py-2 px-4 shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex items-center justify-between flex-wrap gap-2">
+            <div class="flex items-center space-x-2">
+                <span class="inline-flex items-center justify-center px-2 py-0.5 rounded text-[11px] font-bold bg-white text-red-700 uppercase tracking-wider shadow-sm">
+                    100% Free For Teachers
+                </span>
+                <span class="truncate font-medium">
+                    No subscriptions. No paywalls. Built by an active teacher for real classrooms.
+                </span>
+            </div>
+            <div class="flex items-center space-x-4 text-xs font-medium">
+                <a href="#mission" class="underline hover:text-amber-200 transition-colors flex items-center gap-1">
+                    <i class="fa-solid fa-tractor"></i> Why Free?
+                </a>
+                <span class="text-white/40">|</span>
+                <a href="#contact" class="hover:text-cyan-200 transition-colors flex items-center gap-1">
+                    <i class="fa-solid fa-envelope"></i> Request A Tool
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header & Navigation -->
+    <header class="bg-white/95 backdrop-blur-md border-b border-slate-200 sticky top-8 z-40 shadow-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Brand Logo & Identity using modified.png -->
+            <a href="https://redneckedtech.com" class="flex items-center gap-3.5 group">
+                <div class="relative w-13 h-13 rounded-full overflow-hidden border-2 border-brand-cyan shadow-sm p-0.5 bg-white flex-shrink-0 group-hover:scale-105 transition-transform duration-200">
+                    <img 
+                        src="modified.png" 
+                        alt="Redneck EdTech Logo" 
+                        class="w-12 h-12 object-contain rounded-full"
+                        onerror="this.onerror=null; this.src='https://placehold.co/120x120/ffffff/0284c7?text=Redneck+EdTech';"
+                    />
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-display text-xl sm:text-2xl tracking-wide uppercase leading-tight bg-gradient-to-r from-red-600 via-amber-600 to-blue-700 bg-clip-text text-transparent">
+                        Redneck <span class="text-sky-600">EdTech</span>
+                    </span>
+                    <span class="text-[10px] sm:text-xs text-slate-500 font-mono tracking-widest uppercase font-semibold">
+                        High-Yield • Zero-Cost • Teacher-Built
+                    </span>
+                </div>
+            </a>
+
+            <!-- Desktop Category Folder Links -->
+            <nav class="hidden xl:flex items-center space-x-1 font-semibold text-sm">
+                <a href="https://redneckedtech.com" class="px-3 py-2 rounded-lg text-slate-700 hover:text-emerald-700 hover:bg-emerald-50 transition-all flex items-center gap-1.5 border border-transparent hover:border-emerald-200">
+                    <i class="fa-solid fa-gamepad text-emerald-600 text-xs"></i> Games
+                </a>
+                <a href="https://redneckedtech.com" class="px-3 py-2 rounded-lg text-slate-700 hover:text-amber-700 hover:bg-amber-50 transition-all flex items-center gap-1.5 border border-transparent hover:border-amber-200">
+                    <i class="fa-solid fa-shapes text-amber-600 text-xs"></i> Activities
+                </a>
+                <a href="https://redneckedtech.com" class="px-3 py-2 rounded-lg text-slate-700 hover:text-blue-700 hover:bg-blue-50 transition-all flex items-center gap-1.5 border border-transparent hover:border-blue-200">
+                    <i class="fa-solid fa-layer-group text-blue-600 text-xs"></i> CMS
+                </a>
+                <a href="https://redneckedtech.com" class="px-3 py-2 rounded-lg text-slate-700 hover:text-purple-700 hover:bg-purple-50 transition-all flex items-center gap-1.5 border border-transparent hover:border-purple-200">
+                    <i class="fa-solid fa-box-open text-purple-600 text-xs"></i> Packages
+                </a>
+                <a href="https://redneckedtech.com" class="px-3 py-2 rounded-lg text-slate-700 hover:text-yellow-800 hover:bg-yellow-50 transition-all flex items-center gap-1.5 border border-transparent hover:border-yellow-200">
+                    <i class="fa-solid fa-lightbulb text-yellow-600 text-xs"></i> Tips
+                </a>
+                <a href="https://redneckedtech.com" class="px-3 py-2 rounded-lg text-slate-700 hover:text-rose-700 hover:bg-rose-50 transition-all flex items-center gap-1.5 border border-transparent hover:border-rose-200">
+                    <i class="fa-solid fa-wrench text-rose-600 text-xs"></i> Tools
+                </a>
+                <a href="https://redneckedtech.com" class="px-3 py-2 rounded-lg text-slate-700 hover:text-sky-700 hover:bg-sky-50 transition-all flex items-center gap-1.5 border border-transparent hover:border-sky-200">
+                    <i class="fa-solid fa-microchip text-sky-600 text-xs"></i> Tech
+                </a>
+            </nav>
+
+            <!-- Social Links & Shorts CTA -->
+            <div class="flex items-center gap-2.5">
+                <a href="https://www.youtube.com/@RedneckEdTech/shorts" target="_blank" rel="noopener noreferrer" 
+                   class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white text-xs sm:text-sm font-bold px-3.5 py-2 rounded-xl transition-all shadow-sm hover:shadow-red-500/20">
+                    <i class="fa-brands fa-youtube text-base"></i>
+                    <span class="hidden sm:inline">Shorts Channel</span>
+                </a>
+
+                <!-- Mobile Navigation Toggle -->
+                <button id="mobile-menu-btn" type="button" aria-label="Toggle navigation menu" class="xl:hidden p-2.5 rounded-xl bg-slate-100 text-slate-700 hover:text-slate-900 hover:bg-slate-200 focus:outline-none">
+                    <i class="fa-solid fa-bars text-lg" id="menu-icon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Nav -->
+        <div id="mobile-menu" class="hidden xl:hidden bg-white border-b border-slate-200 px-4 pt-3 pb-5 space-y-2">
+            <div class="grid grid-cols-2 gap-2 text-sm font-semibold pt-1">
+                <a href="https://redneckedtech.com" class="p-2.5 rounded-lg bg-slate-50 hover:bg-emerald-50 text-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-gamepad text-emerald-600"></i> Games
+                </a>
+                <a href="https://redneckedtech.com" class="p-2.5 rounded-lg bg-slate-50 hover:bg-amber-50 text-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-shapes text-amber-600"></i> Activities
+                </a>
+                <a href="https://redneckedtech.com" class="p-2.5 rounded-lg bg-slate-50 hover:bg-blue-50 text-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-layer-group text-blue-600"></i> CMS
+                </a>
+                <a href="https://redneckedtech.com" class="p-2.5 rounded-lg bg-slate-50 hover:bg-purple-50 text-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-box-open text-purple-600"></i> Packages
+                </a>
+                <a href="https://redneckedtech.com" class="p-2.5 rounded-lg bg-slate-50 hover:bg-yellow-50 text-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-lightbulb text-yellow-600"></i> Tips
+                </a>
+                <a href="https://redneckedtech.com" class="p-2.5 rounded-lg bg-slate-50 hover:bg-rose-50 text-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-wrench text-rose-600"></i> Tools
+                </a>
+                <a href="https://redneckedtech.com" class="col-span-2 p-2.5 rounded-lg bg-sky-50 border border-sky-200 text-sky-800 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-microchip"></i> Tech Library
+                </a>
+            </div>
+            <div class="pt-3 border-t border-slate-200 flex justify-around text-slate-600">
+                <a href="https://www.youtube.com/@RedneckEdTech" target="_blank" class="hover:text-red-600 text-xl"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://redneckedtech.com" class="hover:text-blue-600 text-xl"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://redneckedtech.com" class="hover:text-sky-600 text-xl"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://redneckedtech.com" class="hover:text-pink-600 text-xl"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="mailto:harl.roehm@redneckedtech.com" class="hover:text-amber-600 text-xl"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- Hero Section -->
+        <section class="relative overflow-hidden py-12 md:py-18 lg:py-20 border-b border-slate-200/80 bg-gradient-to-b from-white via-sky-50/30 to-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+                    
+                    <!-- Left Column: Core Message & Call to Action -->
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-50 border border-sky-200 text-sky-800 text-xs sm:text-sm font-bold shadow-xs">
+                            <span class="w-2.5 h-2.5 rounded-full bg-red-500 animate-ping"></span>
+                            <span>Common-Sense EdTech for Real Classrooms</span>
+                        </div>
+
+                        <h1 class="text-4xl sm:text-5xl md:text-6xl font-black font-display tracking-tight text-slate-900 leading-[1.08]">
+                            TEACHING IS EXPENSIVE. <br/>
+                            <span class="bg-gradient-to-r from-red-600 via-amber-600 to-sky-600 bg-clip-text text-transparent">
+                                YOUR SOFTWARE SHOULDN'T BE.
+                            </span>
+                        </h1>
+
+                        <p class="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal">
+                            I am tired of people charging obscene prices for software that almost fits your class or charges monthly memberships just so you can update your curriculum and reach your kids today. 
+                            <strong class="text-slate-900">That has to stop.</strong> Every tool, activity, game, CMS, and template on this site is <span class="text-sky-700 font-bold underline decoration-sky-400 decoration-2">100% free to use</span> so you can teach your kids today without digging into your own pockets.
+                        </p>
+
+                        <!-- Action Buttons -->
+                        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                            <a href="#resources" class="w-full sm:w-auto px-7 py-3.5 rounded-xl font-bold text-white bg-sky-600 hover:bg-sky-700 shadow-md hover:shadow-sky-500/20 transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-folder-open"></i>
+                                Explore Free Tool Folders
+                            </a>
+                            <a href="https://www.youtube.com/@RedneckEdTech/shorts" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-7 py-3.5 rounded-xl font-bold text-slate-800 bg-white hover:bg-slate-50 border border-slate-300 hover:border-red-500 transition-all shadow-xs flex items-center justify-center gap-2 group">
+                                <i class="fa-brands fa-youtube text-red-600 group-hover:scale-110 transition-transform"></i>
+                                Watch YouTube Shorts
+                            </a>
+                        </div>
+
+                        <!-- Stat Metrics -->
+                        <div class="grid grid-cols-3 gap-3 pt-6 border-t border-slate-200 text-center">
+                            <div class="p-3.5 rounded-xl bg-white border border-slate-200 shadow-xs">
+                                <div class="text-2xl font-black text-amber-600 font-display">$0.00</div>
+                                <div class="text-[11px] sm:text-xs text-slate-500 font-bold uppercase tracking-wider">Teacher Cost</div>
+                            </div>
+                            <div class="p-3.5 rounded-xl bg-white border border-slate-200 shadow-xs">
+                                <div class="text-2xl font-black text-sky-600 font-display">4 PREPS</div>
+                                <div class="text-[11px] sm:text-xs text-slate-500 font-bold uppercase tracking-wider">Classroom Tested</div>
+                            </div>
+                            <div class="p-3.5 rounded-xl bg-white border border-slate-200 shadow-xs">
+                                <div class="text-2xl font-black text-emerald-600 font-display">100%</div>
+                                <div class="text-[11px] sm:text-xs text-slate-500 font-bold uppercase tracking-wider">Open "As-Is"</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Logo Display Card with modified.png -->
+                    <div class="lg:col-span-5 flex justify-center">
+                        <div class="relative group max-w-sm sm:max-w-md w-full">
+                            
+                            <!-- Ambient Glow Behind Logo -->
+                            <div class="absolute -inset-1.5 bg-gradient-to-r from-red-200 via-sky-200 to-amber-200 rounded-3xl blur-xl opacity-70 group-hover:opacity-100 transition duration-500"></div>
+                            
+                            <!-- White Card Container -->
+                            <div class="relative rounded-2xl bg-white border border-slate-200 p-6 sm:p-8 shadow-xl flex flex-col items-center text-center">
+                                
+                                <!-- Prominent Official Logo with modified.png -->
+                                <div class="relative w-64 h-64 sm:w-72 sm:h-72 mb-4 flex items-center justify-center p-2 rounded-2xl bg-slate-50/80 border border-slate-100">
+                                    <img 
+                                        src="modified.png" 
+                                        alt="Redneck EdTech - Harl Roehm Logo" 
+                                        class="w-full h-full object-contain transform group-hover:scale-102 transition-transform duration-300 filter drop-shadow-md"
+                                        onerror="this.onerror=null; this.src='https://placehold.co/400x400/ffffff/0284c7?text=modified.png';"
+                                    />
+                                </div>
+
+                                <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 border border-amber-200 text-amber-800 text-xs font-mono uppercase tracking-wider font-bold mb-2">
+                                    <i class="fa-solid fa-wheat-awn text-amber-600"></i> Farmer • Father • Teacher
+                                </div>
+                                <h3 class="text-2xl font-black text-slate-900 font-display uppercase tracking-wide">
+                                    Harl Roehm
+                                </h3>
+                                <p class="text-xs text-slate-500 mt-1 max-w-xs leading-normal">
+                                    Teacher of 4 preps, national conference speaker, family farmer, &amp; creator of Redneck EdTech.
+                                </p>
+
+                                <div class="w-full mt-5 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-600">
+                                    <span class="flex items-center gap-1.5 text-emerald-600 font-bold">
+                                        <i class="fa-solid fa-circle-check"></i> Always Free
+                                    </span>
+                                    <a href="#contact" class="text-sky-600 hover:text-sky-800 hover:underline flex items-center gap-1 font-bold">
+                                        Need a tool? Just Ask <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- The Philosophy & Realistic Schedule Section -->
+        <section id="mission" class="py-14 sm:py-18 bg-slate-50/70 border-b border-slate-200 relative">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="bg-white border-2 border-slate-200 rounded-3xl p-6 sm:p-10 shadow-lg relative overflow-hidden">
+                    <!-- Accent Ribbon -->
+                    <div class="absolute -right-12 top-6 bg-red-600 text-white text-[11px] font-bold px-12 py-1 rotate-45 shadow-sm uppercase tracking-wider">
+                        Straight Talk
+                    </div>
+
+                    <div class="flex flex-col md:flex-row gap-6 items-start">
+                        <div class="w-14 h-14 rounded-2xl bg-sky-50 text-sky-600 flex items-center justify-center text-3xl flex-shrink-0 border border-sky-200 shadow-xs">
+                            <i class="fa-solid fa-bullhorn"></i>
+                        </div>
+                        <div class="space-y-4 flex-1">
+                            <h2 class="text-2xl sm:text-3xl font-display font-black text-slate-900 uppercase tracking-tight">
+                                The Redneck EdTech Philosophy
+                            </h2>
+                            <blockquote class="text-base sm:text-lg text-slate-800 leading-relaxed italic border-l-4 border-sky-500 pl-4 py-1 bg-sky-50/40 rounded-r-xl">
+                                "Teaching is expensive. I am tired of people charging obscene prices for software that almost fits your class or charges monthly memberships just so you can update your curriculum and reach your kids today. <span class="text-sky-700 font-bold not-italic">That has to stop.</span>"
+                            </blockquote>
+                            <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+                                All materials on this site are offered <strong class="text-slate-900 font-bold">free to use in an as-is condition</strong>. However, if there is something you genuinely want or need for your classroom and I don't have it yet, email me at <a href="mailto:harl.roehm@redneckedtech.com" class="text-sky-600 font-bold hover:underline">harl.roehm@redneckedtech.com</a> and I will try to create it for you.
+                            </p>
+                            
+                            <!-- Realities of Life Box -->
+                            <div class="bg-amber-50/70 rounded-2xl p-4 sm:p-5 border border-amber-200 flex items-start gap-3.5 text-xs sm:text-sm text-slate-700">
+                                <i class="fa-solid fa-cow text-amber-700 text-2xl mt-0.5 flex-shrink-0"></i>
+                                <div>
+                                    <span class="font-bold text-amber-900 text-sm block mb-1">Please Keep In Mind:</span>
+                                    I am a <strong class="text-slate-900">father first</strong>. Along with that, I am actively teaching <strong>4 preps that I am writing curriculum for</strong>, presenting and traveling at conferences nationwide, and working the family farm. Turnaround might take a little time, but I promise I will do my absolute best to help you out in the classroom!
+                                </div>
+                            </div>
+
+                            <div class="flex flex-wrap items-center gap-3 pt-2">
+                                <a href="mailto:harl.roehm@redneckedtech.com" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-sm transition-colors shadow-sm">
+                                    <i class="fa-solid fa-paper-plane"></i> Email Harl: harl.roehm@redneckedtech.com
+                                </a>
+                                <button onclick="copyEmailToClipboard()" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 text-sm font-semibold border border-slate-300 transition-colors">
+                                    <i class="fa-solid fa-copy"></i> Copy Email
+                                </button>
+                                <span id="copy-toast" class="text-xs text-emerald-600 font-bold opacity-0 transition-opacity duration-300">
+                                    ✓ Copied to clipboard!
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Interactive Resource Folders Directory -->
+        <section id="resources" class="py-14 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+                <div>
+                    <div class="flex items-center gap-2 text-sky-600 font-mono text-xs uppercase tracking-widest font-bold mb-1">
+                        <i class="fa-solid fa-folder-open"></i> The Resource Library
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-display font-black text-slate-900 uppercase tracking-tight">
+                        Free Classroom Folders
+                    </h2>
+                    <p class="text-sm sm:text-base text-slate-600 mt-1 max-w-xl">
+                        Explore the folders below. All materials link directly to ready-to-run tools, templates, and activities with zero subscription walls.
+                    </p>
+                </div>
+
+                <!-- Filter Buttons -->
+                <div class="flex items-center gap-1.5 overflow-x-auto pb-2 md:pb-0 scrollbar-none" id="folder-filter-buttons">
+                    <button onclick="filterFolder(event, 'all')" class="filter-btn active px-3.5 py-1.5 rounded-lg text-xs font-bold bg-sky-600 text-white transition-all shadow-xs">All Folders</button>
+                    <button onclick="filterFolder(event, 'games')" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all">Games</button>
+                    <button onclick="filterFolder(event, 'activities')" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all">Activities</button>
+                    <button onclick="filterFolder(event, 'cms')" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all">CMS</button>
+                    <button onclick="filterFolder(event, 'packages')" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all">Packages</button>
+                    <button onclick="filterFolder(event, 'tips')" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all">Tips</button>
+                    <button onclick="filterFolder(event, 'tools')" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all">Tools &amp; Tech</button>
+                </div>
+            </div>
+
+            <!-- Resource Folders Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="resource-cards-container">
+                
+                <!-- Folder 1: Games -->
+                <div class="resource-card group bg-white rounded-2xl border border-slate-200 hover:border-emerald-500 p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-hover-glow flex flex-col justify-between" data-category="games">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-600 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-gamepad"></i>
+                            </div>
+                            <span class="text-[11px] font-mono uppercase font-bold px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200">
+                                Folder / Games
+                            </span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 group-hover:text-emerald-600 transition-colors font-display">
+                            Classroom Games &amp; Review
+                        </h3>
+                        <p class="text-slate-600 text-sm mt-2 leading-relaxed">
+                            Fast-paced, low-friction interactive games designed for quick formative review. No subscription keys, student accounts, or pop-up ads to distract your kids.
+                        </p>
+                        <div class="mt-4 flex flex-wrap gap-1.5">
+                            <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded font-medium">Buzzer Battles</span>
+                            <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded font-medium">Arcade Quizzes</span>
+                            <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded font-medium">Team Spinners</span>
+                        </div>
+                    </div>
+                    <div class="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between">
+                        <span class="text-xs text-slate-500 font-mono">Status: Ready to Run</span>
+                        <a href="https://redneckedtech.com" class="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 hover:text-emerald-800 transition-colors">
+                            Open Games Folder <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Folder 2: Activities -->
+                <div class="resource-card group bg-white rounded-2xl border border-slate-200 hover:border-amber-500 p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-hover-glow flex flex-col justify-between" data-category="activities">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-amber-50 border border-amber-200 text-amber-600 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-shapes"></i>
+                            </div>
+                            <span class="text-[11px] font-mono uppercase font-bold px-2.5 py-1 rounded-full bg-amber-100 text-amber-800 border border-amber-200">
+                                Folder / Activities
+                            </span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 group-hover:text-amber-600 transition-colors font-display">
+                            Interactive Activities
+                        </h3>
+                        <p class="text-slate-600 text-sm mt-2 leading-relaxed">
+                            Hands-on digital manipulatives, warm-ups, digital escape rooms, and collaborative whiteboard-friendly web activities that spark curiosity.
+                        </p>
+                        <div class="mt-4 flex flex-wrap gap-1.5">
+                            <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded font-medium">Bellringers</span>
+                            <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded font-medium">Digital Manipulatives</span>
+                            <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded font-medium">Escape Tasks</span>
+                        </div>
+                    </div>
+                    <div class="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between">
+                        <span class="text-xs text-slate-500 font-mono">100% Free / As-Is</span>
+                        <a href="https://redneckedtech.com" class="inline-flex items-center gap-1.5 text-xs font-bold text-amber-700 hover:text-amber-800 transition-colors">
+                            Open Activities <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Folder 3: CMS -->
+                <div class="resource-card group bg-white rounded-2xl border border-slate-200 hover:border-blue-500 p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-hover-glow flex flex-col justify-between" data-category="cms">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-blue-50 border border-blue-200 text-blue-600 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-layer-group"></i>
+                            </div>
+                            <span class="text-[11px] font-mono uppercase font-bold px-2.5 py-1 rounded-full bg-blue-100 text-blue-800 border border-blue-200">
+                                Folder / CMS
+                            </span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors font-display">
+                            Classroom CMS &amp; Portals
+                        </h3>
+                        <p class="text-slate-600 text-sm mt-2 leading-relaxed">
+                            Lightweight course management, gradebook helpers, rubric builders, and class dashboards that don't lock your curriculum inside costly proprietary silos.
+                        </p>
+                        <div class="mt-4 flex flex-wrap gap-1.5">
+                            <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded font-medium">Student Dashboards</span>
+                            <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded font-medium">Google Sheets CMS</span>
+                            <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded font-medium">Unit Planners</span>
+                        </div>
+                    </div>
+                    <div class="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between">
+                        <span class="text-xs text-slate-500 font-mono">Open Infrastructure</span>
+                        <a href="https://redneckedtech.com" class="inline-flex items-center gap-1.5 text-xs font-bold text-blue-700 hover:text-blue-800 transition-colors">
+                            Open CMS Folder <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Folder 4: Packages -->
+                <div class="resource-card group bg-white rounded-2xl border border-slate-200 hover:border-purple-500 p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-hover-glow flex flex-col justify-between" data-category="packages">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-purple-50 border border-purple-200 text-purple-600 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-box-open"></i>
+                            </div>
+                            <span class="text-[11px] font-mono uppercase font-bold px-2.5 py-1 rounded-full bg-purple-100 text-purple-800 border border-purple-200">
+                                Folder / Packages
+                            </span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 group-hover:text-purple-600 transition-colors font-display">
+                            Curriculum Packages
+                        </h3>
+                        <p class="text-slate-600 text-sm mt-2 leading-relaxed">
+                            All-in-one prep bundles, unit kits, lab guides, and presentation slide templates developed across 4 active class preps and tested under fire with real students.
+                        </p>
+                        <div class="mt-4 flex flex-wrap gap-1.5">
+                            <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded font-medium">Turnkey Units</span>
+                            <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded font-medium">Print &amp; Digital</span>
+                            <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded font-medium">Conference Slides</span>
+                        </div>
+                    </div>
+                    <div class="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between">
+                        <span class="text-xs text-slate-500 font-mono">Multi-Prep Tested</span>
+                        <a href="https://redneckedtech.com" class="inline-flex items-center gap-1.5 text-xs font-bold text-purple-700 hover:text-purple-800 transition-colors">
+                            Open Packages <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Folder 5: Tips & Hacks -->
+                <div class="resource-card group bg-white rounded-2xl border border-slate-200 hover:border-yellow-500 p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-hover-glow flex flex-col justify-between" data-category="tips">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-yellow-50 border border-yellow-200 text-yellow-600 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-lightbulb"></i>
+                            </div>
+                            <span class="text-[11px] font-mono uppercase font-bold px-2.5 py-1 rounded-full bg-yellow-100 text-yellow-800 border border-yellow-200">
+                                Folder / Tips
+                            </span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 group-hover:text-yellow-600 transition-colors font-display">
+                            Practical Classroom Tips
+                        </h3>
+                        <p class="text-slate-600 text-sm mt-2 leading-relaxed">
+                            No fluff. Quick teacher productivity shortcuts, Chrome extensions that save hours, grading hacks, and classroom management tricks that work on day one.
+                        </p>
+                        <div class="mt-4 flex flex-wrap gap-1.5">
+                            <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded font-medium">Shortcuts</span>
+                            <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded font-medium">Grading Hacks</span>
+                            <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded font-medium">Tech Workarounds</span>
+                        </div>
+                    </div>
+                    <div class="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between">
+                        <span class="text-xs text-slate-500 font-mono">Time Savers</span>
+                        <a href="https://redneckedtech.com" class="inline-flex items-center gap-1.5 text-xs font-bold text-yellow-700 hover:text-yellow-800 transition-colors">
+                            Open Tips Folder <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Folder 6: Tools & Tech -->
+                <div class="resource-card group bg-white rounded-2xl border border-slate-200 hover:border-sky-500 p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-hover-glow flex flex-col justify-between" data-category="tools">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-sky-50 border border-sky-200 text-sky-600 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-microchip"></i>
+                            </div>
+                            <span class="text-[11px] font-mono uppercase font-bold px-2.5 py-1 rounded-full bg-sky-100 text-sky-800 border border-sky-200">
+                                Folder / Tools &amp; Tech
+                            </span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 group-hover:text-sky-600 transition-colors font-display">
+                            Custom Web Tools &amp; Tech
+                        </h3>
+                        <p class="text-slate-600 text-sm mt-2 leading-relaxed">
+                            Web apps, randomizers, timer widgets, AI prompt generators, and custom browser tools engineered to bypass expensive corporate subscriptions.
+                        </p>
+                        <div class="mt-4 flex flex-wrap gap-1.5">
+                            <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded font-medium">Generators</span>
+                            <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded font-medium">Class Timers</span>
+                            <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded font-medium">Scripts &amp; Automations</span>
+                        </div>
+                    </div>
+                    <div class="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between">
+                        <span class="text-xs text-slate-500 font-mono">Custom Built</span>
+                        <a href="https://redneckedtech.com" class="inline-flex items-center gap-1.5 text-xs font-bold text-sky-700 hover:text-sky-800 transition-colors">
+                            Open Tools &amp; Tech <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- YouTube Shorts Showcase (Fast, energetic, practical videos) -->
+        <section class="py-14 sm:py-18 bg-slate-50 border-y border-slate-200 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-10">
+                    <div>
+                        <div class="inline-flex items-center gap-2 text-red-600 font-mono text-xs uppercase tracking-widest font-bold">
+                            <i class="fa-brands fa-youtube text-base"></i> @RedneckEdTech / Shorts
+                        </div>
+                        <h2 class="text-3xl font-display font-black text-slate-900 uppercase tracking-tight mt-1">
+                            Bite-Sized Common-Sense Tech
+                        </h2>
+                        <p class="text-sm text-slate-600">
+                            Fast 60-second EdTech breakdowns, free classroom hacks, and zero-dollar workarounds direct from the channel.
+                        </p>
+                    </div>
+
+                    <a href="https://www.youtube.com/@RedneckEdTech/shorts" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs font-bold transition-all shadow-sm flex items-center gap-2">
+                        <i class="fa-brands fa-youtube text-sm"></i> Visit Channel &amp; Subscribe
+                    </a>
+                </div>
+
+                <!-- Video Cards Grid mimicking YouTube Shorts aspect ratio -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    
+                    <!-- Short Card 1 -->
+                    <a href="https://www.youtube.com/@RedneckEdTech/shorts" target="_blank" rel="noopener noreferrer" class="group relative rounded-2xl overflow-hidden bg-white border border-slate-200 hover:border-red-500 transition-all shadow-sm hover:shadow-md flex flex-col">
+                        <div class="relative aspect-[9/14] bg-gradient-to-br from-slate-900 to-slate-800 overflow-hidden flex items-center justify-center">
+                            <div class="absolute inset-0 bg-radial-gradient from-transparent to-black/60 z-10"></div>
+                            <div class="text-center p-4 z-20 group-hover:scale-105 transition-transform duration-300">
+                                <div class="w-13 h-13 rounded-full bg-red-600 text-white mx-auto flex items-center justify-center shadow-lg mb-3">
+                                    <i class="fa-solid fa-play ml-1 text-lg"></i>
+                                </div>
+                                <span class="bg-amber-400 text-slate-950 text-[10px] font-bold px-2.5 py-0.5 rounded uppercase font-mono">
+                                    Zero Cost Hack
+                                </span>
+                            </div>
+                            <div class="absolute top-3 right-3 z-20 bg-black/75 px-2 py-0.5 rounded text-[10px] font-mono text-red-400 border border-red-500/40">
+                                <i class="fa-solid fa-bolt"></i> Short
+                            </div>
+                        </div>
+                        <div class="p-4 flex-1 flex flex-col justify-between bg-white">
+                            <h4 class="text-sm font-bold text-slate-900 group-hover:text-red-600 transition-colors line-clamp-2">
+                                Stop Paying Monthly Fees For Digital Class Spinners &amp; Buzzers
+                            </h4>
+                            <div class="flex items-center justify-between text-[11px] text-slate-500 mt-3 pt-3 border-t border-slate-100 font-medium">
+                                <span>60 Sec Hack</span>
+                                <span class="text-sky-600 font-bold">Watch Video <i class="fa-solid fa-arrow-right text-[9px]"></i></span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Short Card 2 -->
+                    <a href="https://www.youtube.com/@RedneckEdTech/shorts" target="_blank" rel="noopener noreferrer" class="group relative rounded-2xl overflow-hidden bg-white border border-slate-200 hover:border-red-500 transition-all shadow-sm hover:shadow-md flex flex-col">
+                        <div class="relative aspect-[9/14] bg-gradient-to-br from-slate-900 to-slate-800 overflow-hidden flex items-center justify-center">
+                            <div class="absolute inset-0 bg-radial-gradient from-transparent to-black/60 z-10"></div>
+                            <div class="text-center p-4 z-20 group-hover:scale-105 transition-transform duration-300">
+                                <div class="w-13 h-13 rounded-full bg-red-600 text-white mx-auto flex items-center justify-center shadow-lg mb-3">
+                                    <i class="fa-solid fa-play ml-1 text-lg"></i>
+                                </div>
+                                <span class="bg-emerald-400 text-slate-950 text-[10px] font-bold px-2.5 py-0.5 rounded uppercase font-mono">
+                                    Google Sheets Hack
+                                </span>
+                            </div>
+                            <div class="absolute top-3 right-3 z-20 bg-black/75 px-2 py-0.5 rounded text-[10px] font-mono text-red-400 border border-red-500/40">
+                                <i class="fa-solid fa-bolt"></i> Short
+                            </div>
+                        </div>
+                        <div class="p-4 flex-1 flex flex-col justify-between bg-white">
+                            <h4 class="text-sm font-bold text-slate-900 group-hover:text-red-600 transition-colors line-clamp-2">
+                                How I Automate 4 Preps of Rubric Grading For Exactly $0
+                            </h4>
+                            <div class="flex items-center justify-between text-[11px] text-slate-500 mt-3 pt-3 border-t border-slate-100 font-medium">
+                                <span>Prep Time Saver</span>
+                                <span class="text-sky-600 font-bold">Watch Video <i class="fa-solid fa-arrow-right text-[9px]"></i></span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Short Card 3 -->
+                    <a href="https://www.youtube.com/@RedneckEdTech/shorts" target="_blank" rel="noopener noreferrer" class="group relative rounded-2xl overflow-hidden bg-white border border-slate-200 hover:border-red-500 transition-all shadow-sm hover:shadow-md flex flex-col">
+                        <div class="relative aspect-[9/14] bg-gradient-to-br from-slate-900 to-slate-800 overflow-hidden flex items-center justify-center">
+                            <div class="absolute inset-0 bg-radial-gradient from-transparent to-black/60 z-10"></div>
+                            <div class="text-center p-4 z-20 group-hover:scale-105 transition-transform duration-300">
+                                <div class="w-13 h-13 rounded-full bg-red-600 text-white mx-auto flex items-center justify-center shadow-lg mb-3">
+                                    <i class="fa-solid fa-play ml-1 text-lg"></i>
+                                </div>
+                                <span class="bg-blue-400 text-slate-950 text-[10px] font-bold px-2.5 py-0.5 rounded uppercase font-mono">
+                                    Game Generator
+                                </span>
+                            </div>
+                            <div class="absolute top-3 right-3 z-20 bg-black/75 px-2 py-0.5 rounded text-[10px] font-mono text-red-400 border border-red-500/40">
+                                <i class="fa-solid fa-bolt"></i> Short
+                            </div>
+                        </div>
+                        <div class="p-4 flex-1 flex flex-col justify-between bg-white">
+                            <h4 class="text-sm font-bold text-slate-900 group-hover:text-red-600 transition-colors line-clamp-2">
+                                Turn Any Vocabulary List Into An Arcade Review In 30 Seconds
+                            </h4>
+                            <div class="flex items-center justify-between text-[11px] text-slate-500 mt-3 pt-3 border-t border-slate-100 font-medium">
+                                <span>No Student Logins</span>
+                                <span class="text-sky-600 font-bold">Watch Video <i class="fa-solid fa-arrow-right text-[9px]"></i></span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Short Card 4 -->
+                    <a href="https://www.youtube.com/@RedneckEdTech/shorts" target="_blank" rel="noopener noreferrer" class="group relative rounded-2xl overflow-hidden bg-white border border-slate-200 hover:border-red-500 transition-all shadow-sm hover:shadow-md flex flex-col">
+                        <div class="relative aspect-[9/14] bg-gradient-to-br from-slate-900 to-slate-800 overflow-hidden flex items-center justify-center">
+                            <div class="absolute inset-0 bg-radial-gradient from-transparent to-black/60 z-10"></div>
+                            <div class="text-center p-4 z-20 group-hover:scale-105 transition-transform duration-300">
+                                <div class="w-13 h-13 rounded-full bg-red-600 text-white mx-auto flex items-center justify-center shadow-lg mb-3">
+                                    <i class="fa-solid fa-play ml-1 text-lg"></i>
+                                </div>
+                                <span class="bg-purple-400 text-slate-950 text-[10px] font-bold px-2.5 py-0.5 rounded uppercase font-mono">
+                                    Behind The Scenes
+                                </span>
+                            </div>
+                            <div class="absolute top-3 right-3 z-20 bg-black/75 px-2 py-0.5 rounded text-[10px] font-mono text-red-400 border border-red-500/40">
+                                <i class="fa-solid fa-bolt"></i> Short
+                            </div>
+                        </div>
+                        <div class="p-4 flex-1 flex flex-col justify-between bg-white">
+                            <h4 class="text-sm font-bold text-slate-900 group-hover:text-red-600 transition-colors line-clamp-2">
+                                Balancing 4 Preps, Conference Travel, &amp; The Family Farm
+                            </h4>
+                            <div class="flex items-center justify-between text-[11px] text-slate-500 mt-3 pt-3 border-t border-slate-100 font-medium">
+                                <span>Real Teacher Life</span>
+                                <span class="text-sky-600 font-bold">Watch Video <i class="fa-solid fa-arrow-right text-[9px]"></i></span>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Custom Tool Request & Direct Contact Section -->
+        <section id="contact" class="py-14 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+                
+                <!-- Left Details -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="inline-flex items-center gap-2 text-sky-700 font-mono text-xs uppercase tracking-widest font-bold">
+                        <i class="fa-solid fa-screwdriver-wrench"></i> Need Something Specific?
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-display font-black text-slate-900 uppercase tracking-tight">
+                        I'll Try To Build It For You.
+                    </h2>
+                    <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                        If you've spent three hours searching for a classroom app that shouldn't cost $15/month and you can't find it, don't buy an overpriced subscription. 
+                        Tell me what your students need and I will roll up my sleeves and build it.
+                    </p>
+
+                    <!-- Schedule Realism Card -->
+                    <div class="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-3">
+                        <h4 class="text-sm font-bold text-amber-800 flex items-center gap-2">
+                            <i class="fa-solid fa-clock"></i> Quick Heads-Up On Timing:
+                        </h4>
+                        <ul class="text-xs text-slate-600 space-y-2.5">
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-heart text-red-500 mt-0.5"></i>
+                                <span><strong class="text-slate-800">Father first:</strong> Family always takes priority in my house.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-chalkboard-user text-blue-500 mt-0.5"></i>
+                                <span><strong class="text-slate-800">4 Daily Preps:</strong> Actively writing curriculum every week for my own students.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-plane text-sky-500 mt-0.5"></i>
+                                <span><strong class="text-slate-800">Conference Travel:</strong> Presenting to educators across the nation.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-cow text-amber-600 mt-0.5"></i>
+                                <span><strong class="text-slate-800">The Family Farm:</strong> Fences, tractors, and livestock that need care every day.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Direct Email Address Card -->
+                    <div class="p-4 rounded-xl bg-white border border-sky-200 shadow-xs flex items-center justify-between">
+                        <div>
+                            <div class="text-[11px] text-slate-500 font-mono font-medium">Direct Email Contact:</div>
+                            <div class="text-sm font-bold text-sky-700">harl.roehm@redneckedtech.com</div>
+                        </div>
+                        <a href="mailto:harl.roehm@redneckedtech.com" class="p-2.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white transition-colors" title="Send email">
+                            <i class="fa-solid fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Tool Request Form -->
+                <div class="lg:col-span-7">
+                    <div class="bg-white border-2 border-slate-200 rounded-3xl p-6 sm:p-8 shadow-lg relative">
+                        <h3 class="text-xl font-bold text-slate-900 font-display uppercase tracking-wide mb-1">
+                            Send A Tool Request
+                        </h3>
+                        <p class="text-xs text-slate-500 mb-6">
+                            This pre-formats an email directly to Harl Roehm with your requirements so he can build it.
+                        </p>
+
+                        <form id="request-form" onsubmit="handleRequestSubmit(event)" class="space-y-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-slate-700 mb-1" for="teacher-name">Your Name</label>
+                                    <input type="text" id="teacher-name" required placeholder="Mrs. Johnson" 
+                                           class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-sky-500 focus:bg-white transition-colors">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-slate-700 mb-1" for="subject-prep">Grade &amp; Subject / Prep</label>
+                                    <input type="text" id="subject-prep" required placeholder="8th Grade Science / Biology" 
+                                           class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-sky-500 focus:bg-white transition-colors">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-700 mb-1" for="tool-type">What Type of Resource?</label>
+                                <select id="tool-type" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-sky-500 focus:bg-white transition-colors">
+                                    <option value="Game">Classroom Game / Review Activity</option>
+                                    <option value="Activity">Interactive Lesson Manipulative</option>
+                                    <option value="CMS">CMS / Grade / Prep Template</option>
+                                    <option value="Tool">Custom Web Widget / Generator</option>
+                                    <option value="Other">Other / Conference Presentation Request</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-700 mb-1" for="tool-description">Describe What You Need It To Do</label>
+                                <textarea id="tool-description" rows="4" required placeholder="I need a simple buzzer system for 4 teams that works on Chromebooks without students needing to log into Google..." 
+                                          class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-sky-500 focus:bg-white transition-colors"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full py-3.5 px-6 rounded-xl font-bold text-white bg-gradient-to-r from-sky-600 via-blue-600 to-amber-600 hover:from-sky-700 hover:to-amber-700 shadow-md transition-all flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-paper-plane"></i>
+                                Send Request to Harl's Inbox
+                            </button>
+                        </form>
+
+                        <!-- Notification popup box when submitted -->
+                        <div id="form-feedback" class="hidden mt-4 p-4 rounded-xl bg-emerald-50 border border-emerald-300 text-emerald-800 text-xs sm:text-sm">
+                            <div class="flex items-center gap-2 font-bold mb-1">
+                                <i class="fa-solid fa-check-circle text-emerald-600"></i> Opening Email Client...
+                            </div>
+                            If your mail client didn't launch automatically, please email 
+                            <a href="mailto:harl.roehm@redneckedtech.com" class="underline font-bold text-sky-700">harl.roehm@redneckedtech.com</a> directly!
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Site Footer -->
+    <footer class="bg-white border-t border-slate-200 text-slate-600 pt-12 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-10 border-b border-slate-200">
+                
+                <!-- Col 1: Brand Info & modified.png -->
+                <div class="md:col-span-2 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <img 
+                            src="modified.png" 
+                            alt="Redneck EdTech Logo" 
+                            class="w-10 h-10 rounded-full border border-sky-400 object-contain p-0.5 bg-white"
+                            onerror="this.onerror=null; this.src='https://placehold.co/80x80/ffffff/0284c7?text=RET';"
+                        />
+                        <span class="font-display text-xl text-slate-900 tracking-wide">
+                            REDNECK <span class="text-sky-600">EDTECH</span>
+                        </span>
+                    </div>
+                    <p class="text-xs text-slate-500 max-w-md leading-relaxed">
+                        Fighting back against the subscription craze in education. Providing high-yield, open, zero-cost digital resources for educators who just want to teach their students.
+                    </p>
+                    <div class="flex items-center space-x-3 text-slate-600 pt-2">
+                        <a href="https://www.youtube.com/@RedneckEdTech/shorts" target="_blank" class="w-9 h-9 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center hover:text-red-600 hover:border-red-400 transition-colors" title="YouTube Shorts">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+                        <a href="https://redneckedtech.com" class="w-9 h-9 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center hover:text-blue-600 hover:border-blue-400 transition-colors" title="Facebook">
+                            <i class="fa-brands fa-facebook"></i>
+                        </a>
+                        <a href="https://redneckedtech.com" class="w-9 h-9 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center hover:text-sky-600 hover:border-sky-400 transition-colors" title="X / Twitter">
+                            <i class="fa-brands fa-x-twitter"></i>
+                        </a>
+                        <a href="https://redneckedtech.com" class="w-9 h-9 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center hover:text-pink-600 hover:border-pink-400 transition-colors" title="TikTok">
+                            <i class="fa-brands fa-tiktok"></i>
+                        </a>
+                        <a href="mailto:harl.roehm@redneckedtech.com" class="w-9 h-9 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center hover:text-amber-600 hover:border-amber-400 transition-colors" title="Email Harl">
+                            <i class="fa-solid fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Col 2: Directory Links -->
+                <div>
+                    <h4 class="text-sm font-bold text-slate-900 uppercase font-mono tracking-wider mb-3">Resource Folders</h4>
+                    <ul class="space-y-2 text-xs font-medium">
+                        <li><a href="https://redneckedtech.com" class="text-slate-600 hover:text-sky-600 transition-colors">Games &amp; Buzzers</a></li>
+                        <li><a href="https://redneckedtech.com" class="text-slate-600 hover:text-sky-600 transition-colors">Interactive Activities</a></li>
+                        <li><a href="https://redneckedtech.com" class="text-slate-600 hover:text-sky-600 transition-colors">Course CMS &amp; Portals</a></li>
+                        <li><a href="https://redneckedtech.com" class="text-slate-600 hover:text-sky-600 transition-colors">Curriculum Packages</a></li>
+                        <li><a href="https://redneckedtech.com" class="text-slate-600 hover:text-sky-600 transition-colors">Tips &amp; Teacher Hacks</a></li>
+                        <li><a href="https://redneckedtech.com" class="text-slate-600 hover:text-sky-600 transition-colors">Custom Tools &amp; Tech</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: As-Is Notice -->
+                <div>
+                    <h4 class="text-sm font-bold text-slate-900 uppercase font-mono tracking-wider mb-3">As-Is Classroom Use</h4>
+                    <p class="text-xs text-slate-500 leading-relaxed mb-3">
+                        These materials are provided free of charge on an "as-is" basis for classroom instruction. No warranty implied. Use them, modify them, and share them with fellow teachers.
+                    </p>
+                    <div class="text-[11px] text-amber-800 font-mono font-bold">
+                        <i class="fa-solid fa-hammer"></i> Built with pride for teachers.
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Bottom Copyright -->
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-3">
+                <p>© Redneck EdTech. Built by Harl Roehm.</p>
+                <p class="font-medium text-slate-600">
+                    Always free for educators everywhere.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile drawer navigation toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            if (mobileMenu.classList.contains('hidden')) {
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            } else {
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-xmark');
+            }
+        });
+
+        // Filter cards in resource section
+        function filterFolder(evt, category) {
+            const buttons = document.querySelectorAll('#folder-filter-buttons .filter-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-sky-600', 'text-white', 'shadow-xs', 'active');
+                btn.classList.add('bg-slate-100', 'text-slate-700');
+            });
+
+            // Highlight chosen button
+            const activeBtn = evt.currentTarget;
+            activeBtn.classList.remove('bg-slate-100', 'text-slate-700');
+            activeBtn.classList.add('bg-sky-600', 'text-white', 'shadow-xs', 'active');
+
+            // Toggle visibility of matching cards
+            const cards = document.querySelectorAll('.resource-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Copy email using document.execCommand fallback
+        function copyEmailToClipboard() {
+            const email = "harl.roehm@redneckedtech.com";
+            const tempInput = document.createElement("input");
+            tempInput.value = email;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+
+            const toast = document.getElementById('copy-toast');
+            toast.style.opacity = '1';
+            setTimeout(() => {
+                toast.style.opacity = '0';
+            }, 3000);
+        }
+
+        // Handle tool request form submit (opens formatted email client)
+        function handleRequestSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('teacher-name').value;
+            const subject = document.getElementById('subject-prep').value;
+            const type = document.getElementById('tool-type').value;
+            const desc = document.getElementById('tool-description').value;
+
+            const mailSubject = encodeURIComponent(`[Redneck EdTech Request] ${type} from ${name}`);
+            const mailBody = encodeURIComponent(
+                `Hi Harl,\n\n` +
+                `I checked out Redneck EdTech and your YouTube Shorts and would love a tool for my classroom!\n\n` +
+                `Teacher: ${name}\n` +
+                `Subject/Prep: ${subject}\n` +
+                `Tool Type: ${type}\n\n` +
+                `Description of what I need:\n${desc}\n\n` +
+                `(No rush at all—I know you have 4 preps to write for, conference travel, and the family farm!)\n\n` +
+                `Thanks for keeping EdTech free for teachers,\n${name}`
+            );
+
+            const feedback = document.getElementById('form-feedback');
+            feedback.classList.remove('hidden');
+
+            // Open mailto link
+            window.location.href = `mailto:harl.roehm@redneckedtech.com?subject=${mailSubject}&body=${mailBody}`;
+        }
+    </script>
+</body>
+</html>
